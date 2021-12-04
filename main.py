@@ -3,13 +3,13 @@ import json
 
 class Zones:
     def __init__(self):
-        self.Zones = {}
+        self.Zones = []
         self.definizeZones()
         out_file = open("dump.json", "w")
         json.dump(self.Zones, out_file)
 
     def addZone(self, Zone):
-        self.Zones.update(Zone)
+        self.Zones.append(Zone)
 
     def definizeZones(self):
         for s in range(len(cluster)):
@@ -22,13 +22,13 @@ class Zones:
                             lEleman == "roads_of_avalon_raid_pve" or lEleman == "roads_of_avalon_solo_pve" or lEleman == "roads_of_avalon_group_pve"):
                         chests.append(lEleman)
 
-                nested_dict = {cluster[s]["@id"]: {"@id": cluster[s]["@id"],
+                nested_dict = {"@id": cluster[s]["@id"],
                                                    "@displayname": cluster[s]["@displayname"],
                                                    "@type": cluster[s]["@type"],
                                                    "resource": cluster[s]["distribution"].get("resource"),
                                                    "mobcounts": cluster[s]["mobcounts"],
                                                    "chests": chests
-                                                   }}
+                                                   }
                 self.addZone(nested_dict)
 
 
